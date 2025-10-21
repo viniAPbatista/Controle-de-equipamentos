@@ -1,9 +1,7 @@
 package com.devsDoAgi.almoxarifado.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,13 +20,18 @@ public class Funcionario {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID idFuncionario;
 
+    @Column(nullable = false)
     private String nome;
 
+    @Column(nullable = false,unique = true)
     private String email;
 
+    @Column(nullable = false, unique = true)
     private String cpf;
 
+    @Column(nullable = false)
     private String squad;
 
+    @Column(nullable = false)
     private String cargo;
 }
