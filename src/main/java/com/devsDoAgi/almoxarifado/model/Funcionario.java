@@ -1,5 +1,6 @@
 package com.devsDoAgi.almoxarifado.model;
 
+import com.devsDoAgi.almoxarifado.enums.StatusFuncionario;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -34,4 +35,7 @@ public class Funcionario {
 
     @Column(nullable = false)
     private String cargo;
+
+    @Enumerated(EnumType.STRING)
+    private StatusFuncionario statusFuncionario = StatusFuncionario.ATIVO;
 }

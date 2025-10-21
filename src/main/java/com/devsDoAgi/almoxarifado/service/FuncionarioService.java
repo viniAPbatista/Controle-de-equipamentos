@@ -1,6 +1,7 @@
 package com.devsDoAgi.almoxarifado.service;
 
 import com.devsDoAgi.almoxarifado.dto.FuncionarioRequestDTO;
+import com.devsDoAgi.almoxarifado.enums.StatusFuncionario;
 import com.devsDoAgi.almoxarifado.model.Funcionario;
 import com.devsDoAgi.almoxarifado.repository.FuncionarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -28,5 +31,22 @@ public class FuncionarioService {
         funcionarioRepository.save(novoFuncionario);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    public ResponseEntity<Funcionario> inativarFuncionario(UUID id) {
+        Funcionario funcionario = buscarFuncionarioPeloId(id);
+
+        funcionario.setStatusFuncionario(StatusFuncionario.INATIVO);
+        funcionarioRepository.save(funcionario);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    public Funcionario buscarFuncionarioPeloId(UUID id) {
+        Funcionario funcionario = funcionarioRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("Funcionario não encontrado!")
+        );
+
+        return funcionario;
     }
 }

@@ -7,10 +7,9 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/funcionario")
@@ -20,8 +19,13 @@ public class FuncionarioController {
     @Autowired
     private final FuncionarioService service;
 
-    @PostMapping
+    @PostMapping("/adicionar")
     public ResponseEntity<Funcionario> adicionarFuncionario(@Valid @RequestBody FuncionarioRequestDTO dto) {
         return service.adicionarFuncionario(dto);
+    }
+
+    @PatchMapping("/inativar/{id}")
+    public ResponseEntity<Funcionario> inativarFuncionario(@PathVariable UUID id) {
+        return service.inativarFuncionario(id);
     }
 }
