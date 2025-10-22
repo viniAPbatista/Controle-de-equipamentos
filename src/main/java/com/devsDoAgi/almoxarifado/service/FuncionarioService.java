@@ -1,7 +1,7 @@
 package com.devsDoAgi.almoxarifado.service;
 
 import com.devsDoAgi.almoxarifado.dto.FuncionarioRequestDTO;
-import com.devsDoAgi.almoxarifado.enums.StatusFuncionario;
+import com.devsDoAgi.almoxarifado.enums.Status;
 import com.devsDoAgi.almoxarifado.model.Funcionario;
 import com.devsDoAgi.almoxarifado.repository.FuncionarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class FuncionarioService {
     public ResponseEntity<Funcionario> inativarFuncionario(UUID id) {
         Funcionario funcionario = buscarFuncionarioPeloId(id);
 
-        funcionario.setStatusFuncionario(StatusFuncionario.INATIVO);
+        funcionario.setStatusFuncionario(Status.INATIVO);
         funcionarioRepository.save(funcionario);
 
         return ResponseEntity.status(HttpStatus.OK).build();

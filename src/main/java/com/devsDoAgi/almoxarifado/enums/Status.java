@@ -1,6 +1,6 @@
 package com.devsDoAgi.almoxarifado.enums;
 
-public enum StatusFuncionario {
+public enum Status {
     ATIVO,
     INATIVO;
 }

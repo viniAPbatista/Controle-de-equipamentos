@@ -1,9 +1,7 @@
 package com.devsDoAgi.almoxarifado.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.devsDoAgi.almoxarifado.enums.Status;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +20,12 @@ public class Equipamento {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID idEquipamento;
 
+    @Column(nullable = false)
     private String nome;
 
+    @Column(nullable = false)
     private String descricao;
+
+    @Enumerated(EnumType.STRING)
+    private Status statusEquipamento = Status.ATIVO;
 }
