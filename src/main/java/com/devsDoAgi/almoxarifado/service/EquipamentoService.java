@@ -2,6 +2,7 @@ package com.devsDoAgi.almoxarifado.service;
 
 import com.devsDoAgi.almoxarifado.dto.EquipamentoRequestDTO;
 import com.devsDoAgi.almoxarifado.enums.Status;
+import com.devsDoAgi.almoxarifado.exception.ResourceNotFound;
 import com.devsDoAgi.almoxarifado.model.Equipamento;
 import com.devsDoAgi.almoxarifado.repository.EquipamentoRepository;
 import lombok.RequiredArgsConstructor;
@@ -41,8 +42,9 @@ public class EquipamentoService {
     }
 
     private Equipamento buscarEquipamentoPeloId(UUID id) {
+
         Equipamento equipamento = repository.findById(id).orElseThrow(
-                () -> new RuntimeException("Equipamento não encontrado!")
+                () -> new ResourceNotFound("Equipamento não encontrado!")
         );
 
         return equipamento;

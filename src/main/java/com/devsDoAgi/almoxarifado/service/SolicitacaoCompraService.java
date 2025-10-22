@@ -2,6 +2,7 @@ package com.devsDoAgi.almoxarifado.service;
 
 import com.devsDoAgi.almoxarifado.dto.SolicitacaoCompraRequestDTO;
 import com.devsDoAgi.almoxarifado.enums.Status;
+import com.devsDoAgi.almoxarifado.exception.ResourceNotFound;
 import com.devsDoAgi.almoxarifado.model.SolicitacaoCompra;
 import com.devsDoAgi.almoxarifado.repository.SolicitacaoCompraRepository;
 import lombok.RequiredArgsConstructor;
@@ -43,7 +44,7 @@ public class SolicitacaoCompraService {
     private SolicitacaoCompra buscarSolicitacaoCompraPeloId(UUID id) {
 
         SolicitacaoCompra solicitacaoCompra = repository.findById(id).orElseThrow(
-                () -> new RuntimeException("Solicitação de compra não encontrada!")
+                () -> new ResourceNotFound("Solicitação de compra não encontrada!")
         );
 
         return solicitacaoCompra;

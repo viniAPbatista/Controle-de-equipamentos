@@ -2,6 +2,7 @@ package com.devsDoAgi.almoxarifado.service;
 
 import com.devsDoAgi.almoxarifado.dto.FuncionarioRequestDTO;
 import com.devsDoAgi.almoxarifado.enums.Status;
+import com.devsDoAgi.almoxarifado.exception.ResourceNotFound;
 import com.devsDoAgi.almoxarifado.model.Funcionario;
 import com.devsDoAgi.almoxarifado.repository.FuncionarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -43,8 +44,9 @@ public class FuncionarioService {
     }
 
     public Funcionario buscarFuncionarioPeloId(UUID id) {
+
         Funcionario funcionario = funcionarioRepository.findById(id).orElseThrow(
-                () -> new RuntimeException("Funcionario não encontrado!")
+                () -> new ResourceNotFound("Funcionario não encontrado!")
         );
 
         return funcionario;

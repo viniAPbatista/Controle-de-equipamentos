@@ -28,4 +28,8 @@ public class Equipamento {
 
     @Enumerated(EnumType.STRING)
     private Status statusEquipamento = Status.ATIVO;
+
+    @ManyToOne
+    @JoinColumn(name = "id_funcionario")
+    private Funcionario funcionario;
 }

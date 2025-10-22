@@ -45,4 +45,16 @@ public class GlobalExceptionHandler {
         );
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
+
+    @ExceptionHandler(ResourceNotFound.class)
+    public ResponseEntity<ErrorResponseDTO> handlerResourceNotFound (ResourceNotFound ex, HttpServletRequest request) {
+
+        ErrorResponseDTO error = new ErrorResponseDTO(
+                ex.getMessage(),
+                HttpStatus.SERVICE_UNAVAILABLE.value(),
+                LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss")),
+                request.getRequestURI()
+        );
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(error);
+    }
 }

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -37,4 +38,7 @@ public class Funcionario {
 
     @Enumerated(EnumType.STRING)
     private Status statusFuncionario = Status.ATIVO;
+
+    @OneToMany(mappedBy = "funcionario")
+    private List<Equipamento> equipamentos;
 }
