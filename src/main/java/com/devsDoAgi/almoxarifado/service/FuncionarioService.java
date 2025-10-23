@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -35,12 +36,18 @@ public class FuncionarioService {
     }
 
     public ResponseEntity<Funcionario> inativarFuncionario(UUID id) {
+
         Funcionario funcionario = buscarFuncionarioPeloId(id);
 
         funcionario.setStatusFuncionario(Status.INATIVO);
         funcionarioRepository.save(funcionario);
 
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    public List<Funcionario> listarFuncionarios() {
+
+        return funcionarioRepository.findAll();
     }
 
     public Funcionario buscarFuncionarioPeloId(UUID id) {

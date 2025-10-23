@@ -1,6 +1,7 @@
 package com.devsDoAgi.almoxarifado.model;
 
 import com.devsDoAgi.almoxarifado.enums.Status;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,5 +32,6 @@ public class Equipamento {
 
     @ManyToOne
     @JoinColumn(name = "id_funcionario")
+    @JsonIgnore                                             //não mostra a lista de funcionarios dentro de cada equipamento
     private Funcionario funcionario;
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -27,5 +28,10 @@ public class EquipamentoController {
     @PatchMapping("/inativar/{id}")
     public ResponseEntity<Equipamento> inativarEquipamento(@PathVariable UUID id) {
         return service.inativarEquipamento(id);
+    }
+
+    @GetMapping("/estoque")
+    public List<Equipamento> listarEstoque() {
+        return service.listarEstoque();
     }
 }

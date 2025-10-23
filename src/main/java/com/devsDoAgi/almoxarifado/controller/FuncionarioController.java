@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -27,5 +28,10 @@ public class FuncionarioController {
     @PatchMapping("/inativar/{id}")
     public ResponseEntity<Funcionario> inativarFuncionario(@PathVariable UUID id) {
         return service.inativarFuncionario(id);
+    }
+
+    @GetMapping("/listar")
+    public List<Funcionario> listarFuncionarios() {
+        return service.listarFuncionarios();
     }
 }
