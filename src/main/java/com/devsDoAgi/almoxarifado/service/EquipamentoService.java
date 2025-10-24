@@ -82,6 +82,20 @@ public class EquipamentoService {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
+    public ResponseEntity<Equipamento> desvincularEquipamentoFuncionario(UUID id) {
+
+        Equipamento equipamento = buscarEquipamentoPeloId(id);
+
+        if(equipamento.getFuncionario() == null) {
+            throw new RuntimeException("O equipamento já está em estoque!");
+        }
+
+        equipamento.setFuncionario(null);
+        repository.save(equipamento);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
     private Equipamento buscarEquipamentoPeloId(UUID id) {
 
         Equipamento equipamento = repository.findById(id).orElseThrow(

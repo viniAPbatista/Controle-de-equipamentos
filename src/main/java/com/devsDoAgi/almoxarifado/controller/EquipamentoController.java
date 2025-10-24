@@ -45,4 +45,9 @@ public class EquipamentoController {
     public ResponseEntity<Equipamento> atribuirEquiamentoParaFuncionario(@PathVariable UUID id, @RequestBody AtribuirEquipamentoRequestDTO dto) {
         return service.atribuirEquipamentoParaFuncionario(id, dto);
     }
+
+    @PatchMapping("/desvincular/{id}")
+    public ResponseEntity<Equipamento> desvincularEquipamentoFuncionario(@PathVariable UUID id) {
+        return service.desvincularEquipamentoFuncionario(id);
+    }
 }
