@@ -58,4 +58,13 @@ public class FuncionarioService {
 
         return funcionario;
     }
+
+    public Funcionario buscarFuncionarioPeloEmail(String email) {
+
+        Funcionario funcionario = funcionarioRepository.findByEmail(email).orElseThrow(
+                () -> new ResourceNotFound("Usuario não encontrado!")
+        );
+
+        return funcionario;
+    }
 }

@@ -1,5 +1,6 @@
 package com.devsDoAgi.almoxarifado.controller;
 
+import com.devsDoAgi.almoxarifado.dto.AtribuirEquipamentoRequestDTO;
 import com.devsDoAgi.almoxarifado.dto.EquipamentoRequestDTO;
 import com.devsDoAgi.almoxarifado.model.Equipamento;
 import com.devsDoAgi.almoxarifado.service.EquipamentoService;
@@ -33,5 +34,15 @@ public class EquipamentoController {
     @GetMapping("/estoque")
     public List<Equipamento> listarEstoque() {
         return service.listarEstoque();
+    }
+
+    @GetMapping("/listar")
+    public List<Equipamento> listarEquipamentos() {
+        return service.listarEquipamentos();
+    }
+
+    @PatchMapping("/atribuir/{id}")
+    public ResponseEntity<Equipamento> atribuirEquiamentoParaFuncionario(@PathVariable UUID id, @RequestBody AtribuirEquipamentoRequestDTO dto) {
+        return service.atribuirEquipamentoParaFuncionario(id, dto);
     }
 }

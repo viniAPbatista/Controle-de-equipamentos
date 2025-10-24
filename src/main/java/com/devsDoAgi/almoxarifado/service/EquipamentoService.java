@@ -1,5 +1,6 @@
 package com.devsDoAgi.almoxarifado.service;
 
+import com.devsDoAgi.almoxarifado.dto.AtribuirEquipamentoRequestDTO;
 import com.devsDoAgi.almoxarifado.dto.EquipamentoRequestDTO;
 import com.devsDoAgi.almoxarifado.enums.Status;
 import com.devsDoAgi.almoxarifado.exception.ResourceNotFound;
@@ -61,6 +62,24 @@ public class EquipamentoService {
         return repository.findAll().stream()
                 .filter(equipamento -> equipamento.getFuncionario() == null)
                 .collect(Collectors.toList());
+    }
+
+    public List<Equipamento> listarEquipamentos() {
+        return repository.findAll();
+    }
+
+    public ResponseEntity<Equipamento> atribuirEquipamentoParaFuncionario(UUID id, AtribuirEquipamentoRequestDTO dto) {
+
+        Equipamento equipamento = buscarEquipamentoPeloId(id);
+
+        if (equipamento.getFuncionario() != null) {
+            throw new RuntimeException("O equipamento já está em uso!");
+        }
+
+        equipamento.setFuncionario(funcionarioService.buscarFuncionarioPeloEmail(dto.email()));
+        repository.save(equipamento);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     private Equipamento buscarEquipamentoPeloId(UUID id) {

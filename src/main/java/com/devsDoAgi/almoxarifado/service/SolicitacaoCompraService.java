@@ -2,6 +2,7 @@ package com.devsDoAgi.almoxarifado.service;
 
 import com.devsDoAgi.almoxarifado.dto.SolicitacaoCompraRequestDTO;
 import com.devsDoAgi.almoxarifado.enums.Status;
+import com.devsDoAgi.almoxarifado.enums.StatusSolicitacaoCompra;
 import com.devsDoAgi.almoxarifado.exception.ResourceNotFound;
 import com.devsDoAgi.almoxarifado.model.SolicitacaoCompra;
 import com.devsDoAgi.almoxarifado.repository.SolicitacaoCompraRepository;
@@ -36,6 +37,16 @@ public class SolicitacaoCompraService {
         SolicitacaoCompra solicitacaoCompra = buscarSolicitacaoCompraPeloId(id);
 
         solicitacaoCompra.setStatusSolicitacao(Status.INATIVO);
+        repository.save(solicitacaoCompra);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    public ResponseEntity<SolicitacaoCompra> aprovarSolicitacaoCompra(UUID id) {
+
+        SolicitacaoCompra solicitacaoCompra = buscarSolicitacaoCompraPeloId(id);
+
+        solicitacaoCompra.setEstado(StatusSolicitacaoCompra.APROVADA);
         repository.save(solicitacaoCompra);
 
         return ResponseEntity.status(HttpStatus.OK).build();

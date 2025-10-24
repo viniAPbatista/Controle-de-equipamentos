@@ -28,4 +28,9 @@ public class SolicitacaoCompraController {
     public ResponseEntity<SolicitacaoCompra> inativarSolicitacaoCompra(@PathVariable UUID id) {
         return service.inativarSolicitacaoCompra(id);
     }
+
+    @PatchMapping("/aprovar/{id}")
+    public ResponseEntity<SolicitacaoCompra> aprovarSolicitacaoCompra(@PathVariable UUID id) {
+        return service.aprovarSolicitacaoCompra(id);
+    }
 }
