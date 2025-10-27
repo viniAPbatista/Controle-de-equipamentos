@@ -1,6 +1,8 @@
 package com.devsDoAgi.almoxarifado.controller;
 
 import com.devsDoAgi.almoxarifado.dto.FuncionarioRequestDTO;
+import com.devsDoAgi.almoxarifado.dto.LoginRequestDTO;
+import com.devsDoAgi.almoxarifado.dto.LoginResponseDTO;
 import com.devsDoAgi.almoxarifado.model.Funcionario;
 import com.devsDoAgi.almoxarifado.service.FuncionarioService;
 import jakarta.validation.Valid;
@@ -17,8 +19,12 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class FuncionarioController {
 
-    @Autowired
     private final FuncionarioService service;
+
+    @PostMapping("/login")
+    public ResponseEntity<LoginResponseDTO> login (@Valid @RequestBody LoginRequestDTO dto) {
+        return service.login(dto);
+    }
 
     @PostMapping("/adicionar")
     public ResponseEntity<Funcionario> adicionarFuncionario(@Valid @RequestBody FuncionarioRequestDTO dto) {

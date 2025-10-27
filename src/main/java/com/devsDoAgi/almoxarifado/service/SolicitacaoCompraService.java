@@ -18,7 +18,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class SolicitacaoCompraService {
 
-    @Autowired
     private final SolicitacaoCompraRepository repository;
 
     public ResponseEntity<SolicitacaoCompra> adicionarSolicitacaoCompra(SolicitacaoCompraRequestDTO dto) {

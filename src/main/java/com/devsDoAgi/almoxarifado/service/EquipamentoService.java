@@ -21,10 +21,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class EquipamentoService {
 
-    @Autowired
     private final EquipamentoRepository repository;
 
-    @Autowired
     private final FuncionarioService funcionarioService;
 
     public ResponseEntity<Equipamento> adicionarEquipamento(EquipamentoRequestDTO dto) {
