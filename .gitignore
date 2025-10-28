@@ -1,40 +1,96 @@
-HELP.md
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
+# =========================
+# 🌱 GITIGNORE - MONOREPO SPRING BOOT + GRADLE
+# =========================
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+# --- Sistema e IDEs ---
+*.class
+*.log
+*.tmp
+*.swp
+*~
+.DS_Store
+Thumbs.db
 
-### IntelliJ IDEA ###
-.idea
-*.iws
+# IntelliJ IDEA
+.idea/
 *.iml
-*.ipr
 out/
-!**/src/main/**/out/
-!**/src/test/**/out/
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-
-### VS Code ###
+# VSCode
 .vscode/
 
-# Arquivo de variáveis de ambiente
+# Eclipse
+.project
+.classpath
+.csettings
+.settings/
+
+# --- Gradle ---
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+.gradle/
+**/build/
+**/.gradle/
+**/out/
+
+# --- Arquivos do Wrapper ---
+gradlew
+gradlew.bat
+
+# --- Arquivos de ambiente ---
 .env
+*.env.local
+*.env.*
+!example.env
+
+# --- Arquivos temporários do sistema ---
+# (gerados por Windows, macOS e Linux)
+ehthumbs.db
+Icon?
+Desktop.ini
+
+# --- Logs e dumps ---
+*.log
+*.trace
+hs_err_pid*
+
+# --- Configuração de pacotes ---
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# --- Arquivos de teste ou cache ---
+*.war
+*.jar
+*.ear
+*.class
+*.cache
+*.orig
+
+# --- Backups ---
+*.bak
+*.backup
+*.old
+
+# --- Arquivos específicos dos serviços ---
+/email-service/.env
+/email-service/build/
+/email-service/.gradle/
+/equipamentos-service/.env
+/equipamentos-service/build/
+/equipamentos-service/.gradle/
+
+# --- Arquivos de distribuição ---
+dist/
+target/
+bin/
+tmp/
+out/
+
+# --- Arquivos do sistema operacional ---
+*.DS_Store
+ehthumbs.db
+Icon?
+Thumbs.db
