@@ -31,4 +31,9 @@ subprojects {
     tasks.withType(Test).configureEach {
         useJUnitPlatform()
     }
+
+    dependencies {
+        implementation 'org.springframework.kafka:spring-kafka'
+        implementation 'io.github.cdimascio:java-dotenv:5.2.2'
+    }
 }

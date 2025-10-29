@@ -1,12 +1,14 @@
 package com.devsDoAgi.almoxarifado.controller;
 
 import com.devsDoAgi.almoxarifado.dto.SolicitacaoCompraRequestDTO;
+import com.devsDoAgi.almoxarifado.model.Funcionario;
 import com.devsDoAgi.almoxarifado.model.SolicitacaoCompra;
 import com.devsDoAgi.almoxarifado.service.SolicitacaoCompraService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -20,8 +22,8 @@ public class SolicitacaoCompraController {
     private final SolicitacaoCompraService service;
 
     @PostMapping("/adicionar")
-    public ResponseEntity<SolicitacaoCompra> adicionarSolicitacaoCompra(@Valid @RequestBody SolicitacaoCompraRequestDTO dto) {
-        return service.adicionarSolicitacaoCompra(dto);
+    public ResponseEntity<SolicitacaoCompra> adicionarSolicitacaoCompra(@Valid @RequestBody SolicitacaoCompraRequestDTO dto, @AuthenticationPrincipal Funcionario funcionario) {
+        return service.adicionarSolicitacaoCompra(dto, funcionario);
     }
 
     @PatchMapping("/inativar/{id}")
